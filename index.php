@@ -6,11 +6,16 @@
     </header>
 
     <body>
-        <?php
-            
-            include 'functies.php';
+        <div id = 'pagina' class = 'w3-container'>
+            <div class ='w3-container w3-teal'>
+                <h1>ToDoList</h1> 
+            </div>
 
-        ?>
+            <?php
+                include 'functies.php';
+            ?>
+            
+        </div>
     </body>
 
 </html> 
