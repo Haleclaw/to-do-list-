@@ -10,24 +10,23 @@
                 <h1>ToDoList</h1> 
             </div>
 
-            <h2>Login</h2> 
+            <h2>Register</h2> 
       
             <div class = "w3-container">
       
-                <form class = "w3-container" role = "form" action = 'login.php' method = "post">
+                <form class = "w3-container" role = "form" action = 'index.php' method = "post">
                     <label> Username: </label>  
                     <input type = "text" name = "username" required></br>
                     <label> Password: </label> 
                     <input type = "password" name = "password" required>
-                    <button class = 'w3-btn w3-teal'type = "submit" name = "login">Login</button>
+                    <button class = 'w3-btn w3-teal'type = "submit" name = "register">submit</button>
             </form>
-
-            <a href='register.php'> don't have an account? </a>
 			     
             </div>
 
 
         </div>
-    </body>
 
-</html> 
+</body>
+
+</html>
