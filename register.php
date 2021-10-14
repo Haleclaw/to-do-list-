@@ -14,7 +14,7 @@
       
             <div class = "w3-container">
       
-                <form class = "w3-container" role = "form" action = 'index.php' method = "post">
+                <form class = "w3-container" role = "form" action = 'registerUpload.php' method = "post">
                     <label> Username: </label>  
                     <input type = "text" name = "username" required></br>
                     <label> Password: </label> 

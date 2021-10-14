@@ -2,34 +2,40 @@
 // connectDatabase // // connectDatabase //
 // connectDatabase // // connectDatabase //
 
-include 'database.php';
+require 'function.php';
+$conn = databaseConnection();
 
 // login // // login //
 // login // // login //
 
-if ( !isset($_POST['username'], $_POST['password']) ) {
-	// Could not get the data that should have been sent.
-	exit('Please fill both the username and password fields!');
+session_start();
+
+if(isset($_POST['login'])) {
+
+	$user = $_POST['username'];
+	$pass = $_POST['password'];
+
+		if(empty($user) || empty($pass)) {
+		$message = 'All field are required';
+		} 
+
+		else {
+			$query = $conn->prepare("SELECT username, password FROM users WHERE username=? AND password=? ");
+			$query->execute(array($user,$pass));
+			$row = $query->fetch(PDO::FETCH_BOTH);
+
+				if($query->rowCount() > 0) {
+  				$_SESSION['username'] = $user;
+  				header('location:home.php');
+				 } 
+			 		else {
+  						echo "Username/Password is wrong";
+					}
+
+
+			}
+
 }
 
-if ($stmt->num_rows > 0) {
-	$stmt->bind_result($id, $password);
-	$stmt->fetch();
-	// Account exists, now we verify the password.
-	if (password_verify($_POST['password'], $password)) {
-		// Verification success! User has logged-in!
-		session_regenerate_id();
-		$_SESSION['loggedin'] = TRUE;
-		$_SESSION['name'] = $_POST['username'];
-		$_SESSION['id'] = $id;
-		echo 'Welcome ' . $_SESSION['name'] . '!';
-	} else {
-		// Incorrect password
-		echo 'Incorrect username and/or password!';
-	}
-} else {
-	// Incorrect username
-	echo 'Incorrect username and/or password!';
-}
 
 ?>
