@@ -29,9 +29,10 @@ function getUsers(){
 }
 
 function createList(){
-    
+    $conn = databaseConnection();
+    $stmt=$conn->prepare('INSERT INTO list (name)');
+    $stmt->execute();
 }
-
 
 
 ?>

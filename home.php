@@ -1,6 +1,10 @@
+<?php
+    require 'function.php'
+?>
+
 <header>
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    </header>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</header>
 
     <body>
         <div id = 'pagina' class = 'w3-container'>
@@ -8,10 +12,12 @@
                 <h1>ToDoList</h1> 
             </div>
 
-
             <div id = 'contentPagina' class = "w3-container">
       
-            <button> add list </button>
+            <form class = "w3-container" role = "form" action = 'createList.php' method = "post">
+                <button class = 'w3-btn w3-teal'type = "submit" > add list </button>
+
+            </form>
 
             </div>
 
@@ -20,6 +26,3 @@
     </body>
 
 
-<?php
-  
-?>
