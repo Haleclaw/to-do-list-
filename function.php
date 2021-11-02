@@ -28,11 +28,11 @@ function getUsers(){
 	return $stmt->fetchAll();
 }
 
-function createList(){
+function createList($listName){
     $conn = databaseConnection();
-    $stmt=$conn->prepare('INSERT INTO list (name)');
+    $stmt=$conn->prepare('INSERT INTO list (`name`) values (:listName)');
+    $stmt->bindParam(':listName', $listName);
     $stmt->execute();
 }
-
 
 ?>
