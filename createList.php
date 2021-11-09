@@ -28,13 +28,12 @@
         </div>
 
         <?php
-
+        
             }
 
             if ( $_POST == true){
                 $listName = $_POST['listName'];
                 createList($listName);
-
             }
         ?>
 

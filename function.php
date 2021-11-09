@@ -33,6 +33,8 @@ function createList($listName){
     $stmt=$conn->prepare('INSERT INTO list (`name`) values (:listName)');
     $stmt->bindParam(':listName', $listName);
     $stmt->execute();
+
+    include 'list.php';
 }
 
 ?>
