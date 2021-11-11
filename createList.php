@@ -14,7 +14,6 @@
             <div class = "w3-container">
 
                 <?php
-
                     require 'function.php'; 
 
                     if ( $_POST == false){

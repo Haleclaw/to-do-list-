@@ -13,12 +13,9 @@
             </div>
 
             <div id = 'contentPagina' class = "w3-container">
-      
                 <form class = "w3-container" role = "form" action = 'createList.php' method = "post">
                     <button class = 'w3-btn w3-teal'type = "submit" > add list </button>
-
                 </form>
-
             </div>
 
 
