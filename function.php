@@ -35,6 +35,7 @@ function getUsers(){
 	$stmt=$conn->prepare('SELECT * FROM users');
 	$stmt->execute();
 	return $stmt->fetchAll();
+    $conn = null; 
 }
 
 // createList // // createList //
@@ -45,8 +46,19 @@ function createList($listName){
     $stmt=$conn->prepare('INSERT INTO list (`name`) values (:listName)');
     $stmt->bindParam(':listName', $listName);
     $stmt->execute();
+    $conn = null;
 
-    include 'list.php';
+    getId();
+
+    header("location: list.php?name=".$listName);
+}
+
+function getId(){
+    $conn = databaseConnection();
+    $stmt=$conn->prepare('SELECT MAX(id) FROM list');
+    $stmt->bindParam(':ListId', $ListId);
+    $stmt->execute();
+    $conn = null;
 }
 
 // deleteList // // deleteList //
@@ -56,6 +68,14 @@ function deleteList($listName){
     $conn = databaseConnection();
     $stmt=$conn->prepare('DELETE FROM list WHERE (:listName)');
     $stmt-execute();
+    $conn = null; 
+}
+
+// addTask // // addTask //
+// addTask // // addTask //
+
+function addTask(){
+    
 }
 
 ?>
