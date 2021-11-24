@@ -48,16 +48,25 @@ function createList($listName){
     $stmt->execute();
     $conn = null;
 
-    getId();
+    $idList = getListId();
+    var_dump($idList[0][0]);
 
-    header("location: list.php?name=".$listName);
+    header("location: list.php?listId=".$idList[0][0]);
 }
 
-function getId(){
+function getListId(){
     $conn = databaseConnection();
     $stmt=$conn->prepare('SELECT MAX(id) FROM list');
-    $stmt->bindParam(':ListId', $ListId);
     $stmt->execute();
+    return $stmt->fetchAll();
+    $conn = null;
+}
+
+function getName(){
+    $conn = databaseConnection();
+    $stmt=$conn->prepare('SELECT * FROM list WHERE id');
+    $stmt->execute();
+    return $stmt->fetchAll();
     $conn = null;
 }
 
