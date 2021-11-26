@@ -5,8 +5,8 @@
     </header>
 
     <body>
-        <div id = 'pagina' class = 'w3-container w3-display-topmiddle'>
-            <div class ='w3-container w3-teal'>
+        <div id = 'pagina' class = 'w3-container w3-border w3-round-xxlarge w3-display-middle '>
+            <div class ='w3-container w3-round-xlarge w3-teal '>
                 <h1>ToDoList</h1> 
             </div>
 
