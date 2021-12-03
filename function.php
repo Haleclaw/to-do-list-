@@ -54,6 +54,9 @@ function createList($listName){
     header("location: list.php?listId=".$idList[0][0]);
 }
 
+// getListId // // getListId //
+// getListId // // getListId //
+
 function getListId(){
     $conn = databaseConnection();
     $stmt=$conn->prepare('SELECT MAX(id) FROM list');
@@ -62,9 +65,23 @@ function getListId(){
     $conn = null;
 }
 
+// getName // // getName // 
+// getName // // getName // 
+
 function getName(){
     $conn = databaseConnection();
     $stmt=$conn->prepare('SELECT * FROM list WHERE id');
+    $stmt->execute();
+    return $stmt->fetchAll();
+    $conn = null;
+}
+
+// getAllList // // getAllList // 
+// getAllList // // getAllList // 
+
+function getAllList(){
+    $conn = databaseConnection();
+    $stmt=$conn->prepare('SELECT * FROM list');
     $stmt->execute();
     return $stmt->fetchAll();
     $conn = null;
