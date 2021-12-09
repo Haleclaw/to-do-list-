@@ -12,6 +12,13 @@
 
             <button class = 'w3-btn w3-black'type = "submit" onclick = 'location.href ="home.php"' name = "Main page">Main page</button> 
         </div>
+
+        <?php
+            require 'function.php';
+
+            $listName = getName();
+            deleteList($listName);
+        ?>
     </body> 
 
 </html>
