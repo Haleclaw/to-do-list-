@@ -28,7 +28,7 @@
             <div class = "w3-card w3-white left" style="width:20%; height:80%">
                 <h3 class = "w3-center"><?php echo $value[1] ?></h3>
                     <div class = 'w3-center'>
-                        <button class = 'w3-btn w3-teal'type = "submit" name = "addTask">add task</button>
+                        <button class = 'w3-btn w3-teal'type = "submit" onclick ='location.href ="createTask.php"'name = "addTask">add task</button>
                         <button class = 'w3-btn w3-teal'type = "submit" onclick ='location.href ="deleteList.php"' name = "deleteList">delete list</button>
                     </div>
             </div>
