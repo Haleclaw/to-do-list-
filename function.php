@@ -101,6 +101,11 @@ function deleteList($listName){
 // addTask // // addTask //
 
 function addTask(){
+    $conn = databaseConnection();
+    $stmt=$conn->prepare('INSERT INTO task (`name`) values (:taskName)');
+    $stmt->bindParam(':taskName', $taskName);
+    $stmt->execute();
+    $conn = null;
 
 }
 

@@ -12,7 +12,7 @@
 
             <h2>add task</h2> 
 
-            <form class = "w3-container" role = "form" action = 'createList.php' method = "post">
+            <form class = "w3-container" role = "form" action = 'createTask.php' method = "post">
                 <label> name: </label>  
                 <input type = "text" name = "taskName" required></br>
                 <label> task description: </label>
@@ -20,6 +20,13 @@
                 <button class = 'w3-btn w3-teal'type = "submit" name = "register">submit</button>
             </form>
 
+            <?php
+        
+                if ( $_POST == true){
+                $taskName = $_POST['taskName'];
+                addTask($taskName);
+                }
+            ?>
         </div>
     </body>
 
