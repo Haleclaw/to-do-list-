@@ -92,21 +92,22 @@ function getAllList(){
 
 function deleteList($listName){
     $conn = databaseConnection();
-    $stmt=$conn->prepare('DELETE FROM list WHERE (:listName)');
-    $stmt-execute();
+    $stmt=$conn->prepare('DELETE FROM list WHERE `name`= :listName');
+    $stmt->bindParam(':listName', $listName);
+    $stmt->execute();
     $conn = null; 
 }
 
 // addTask // // addTask //
 // addTask // // addTask //
 
-function addTask(){
+function addTask($taskName, $taskDescription){
     $conn = databaseConnection();
-    $stmt=$conn->prepare('INSERT INTO task (`name`) values (:taskName)');
+    $stmt=$conn->prepare('INSERT INTO task (`name`,`text`) values (:taskName,:taskDescription)');
     $stmt->bindParam(':taskName', $taskName);
+    $stmt->bindParam(':taskDescription', $taskDescription);
     $stmt->execute();
     $conn = null;
-
 }
 
 ?>

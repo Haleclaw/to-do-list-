@@ -21,10 +21,13 @@
             </form>
 
             <?php
-        
+
+                require 'function.php';
+                
                 if ( $_POST == true){
                 $taskName = $_POST['taskName'];
-                addTask($taskName);
+                $taskDescription = $_POST['taskDescription'];
+                addTask($taskName,$taskDescription);
                 }
             ?>
         </div>
