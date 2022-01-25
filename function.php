@@ -87,6 +87,17 @@ function getAllList(){
     $conn = null;
 }
 
+// getAlltask // // getAlltask //
+// getAlltask // // getAlltask //
+
+function getAlltask(){
+    $conn = databaseConnection();
+    $stmt=$conn->prepare('SELECT * FROM task');
+    $stmt->execute();
+    return $stmt->fetchALL();
+    $conn = null;
+}
+
 // deleteList // // deleteList //
 // deleteList // // deleteList //
 
