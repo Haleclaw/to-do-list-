@@ -16,8 +16,8 @@
         <?php
             require 'function.php';
 
-            $listName = getName();
-            deleteList($listName);
+            $listId = getListId();
+            deleteList($listId);
         ?>
     </body> 
 

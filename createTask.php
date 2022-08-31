@@ -10,10 +10,11 @@
                 <h1>ToDoList</h1> 
             </div>
 
-            <h2>add task</h2> 
+            <h2>add task</h2>
+            <h3> lijst: <?php echo $_GET['id']; ?> </h3> 
 
             <form class = "w3-container" role = "form" action = 'createTask.php' method = "post">
-                <label> name: </label>  
+                <label> naam: </label>  
                 <input type = "text" name = "taskName" required></br>
                 <label> task description: </label>
                 <input type = "text" class='taskDescription' name = "taskDescription" required><br>
@@ -25,9 +26,15 @@
                 require 'function.php';
                 
                 if ( $_POST == true){
+                $listId = $_GET['id'];    
                 $taskName = $_POST['taskName'];
                 $taskDescription = $_POST['taskDescription'];
-                addTask($taskName,$taskDescription);
+                addTask($listId,$taskName,$taskDescription);
+
+
+
+                
+                header("Location: home.php");
                 }
             ?>
         </div>

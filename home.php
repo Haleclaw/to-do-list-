@@ -25,19 +25,23 @@
         $alltask = getAlltask();
 
         foreach ($alllist as $value){
+
         ?>
+        
             <div class = "w3-card w3-white left" style="width:20%; height:80%">
-                <h3 class = "w3-center"><?php echo $value[1] ?></h3>
+                <h3 class = "w3-center"><?php echo $value['name'] ?></h3>
                     <div class = 'w3-center'>
-                        <button class = 'w3-btn w3-teal'type = "submit" onclick ='location.href ="createTask.php"'name = "addTask">add task</button>
-                        <button class = 'w3-btn w3-teal'type = "submit" onclick ='location.href ="deleteList.php"' name = "deleteList">delete list</button>
+                        <button class = 'w3-btn w3-teal'type = "submit" onclick ='location.href =`createTask.php?id= <?php echo $value["id"]; ?>`'name = "addTask">add task</button>
+                        <button class = 'w3-btn w3-teal'type = "submit" onclick ='location.href =`editList.php?id= <?php echo $value["id"]; ?>`' name = "editList">edit list</button>
+                        <button class = 'w3-btn w3-teal'type = "submit" onclick ='location.href ="deleteList.php?id= <?php echo $value["id"]; ?>"' name = "deleteList">delete list</button>
                     </div>
 
                     <?php
                      foreach ($alltask as $value){
+
                     ?>
                         <div class = 'w3-card w3-round-xxlarge w3-sand left' style="width:100%; height:20%">
-                            <h3 class = "w3-center"><?php echo $value[1] ?></h3>
+                            <h3 class = "w3-center"><?php echo $value['name'] ?></h3>
                                 <div class = 'w3-container w3-center'>
                                     <button class = 'w3-btn w3-sand'type = "submit" onclick ='location.href ="task.php"'name = "bewerken">edit</button>
                                     <button class = 'w3-btn w3-sand'type = "submit" onclick ='location.href ="task.php"'name = "bewerken">delete task</button>

@@ -41,17 +41,19 @@ function getUsers(){
 // createList // // createList //
 // createList // // createList //
 
-function createList($listName){
+function createList($listName,$listDescription){
     $conn = databaseConnection();
-    $stmt=$conn->prepare('INSERT INTO list (`name`) values (:listName)');
+    $stmt=$conn->prepare('INSERT INTO list (`name`,`description`) values (:listName,:listDescription)');
     $stmt->bindParam(':listName', $listName);
+    $stmt->bindParam(':listDescription', $listDescription);
     $stmt->execute();
     $conn = null;
 
-    $idList = getListId();
-    var_dump($idList[0][0]);
 
-    header("location: list.php?listId=".$idList[0][0]);
+    $list = getListId();
+    var_dump($list[0][0]);
+
+    header("location: list.php?listId=".$list[0][0]);
 }
 
 // getListId // // getListId //
@@ -59,7 +61,7 @@ function createList($listName){
 
 function getListId(){
     $conn = databaseConnection();
-    $stmt=$conn->prepare('SELECT MAX(id) FROM list');
+    $stmt=$conn->prepare('SELECT (id) FROM list');
     $stmt->execute();
     return $stmt->fetchAll();
     $conn = null;
@@ -101,10 +103,10 @@ function getAlltask(){
 // deleteList // // deleteList //
 // deleteList // // deleteList //
 
-function deleteList($listName){
+function deleteList($listId){
     $conn = databaseConnection();
-    $stmt=$conn->prepare('DELETE FROM list WHERE `name`= :listName');
-    $stmt->bindParam(':listName', $listName);
+    $stmt=$conn->prepare('DELETE FROM list WHERE id= :id');
+    $stmt->bindParam(':id', $id);
     $stmt->execute();
     $conn = null; 
 }
@@ -112,9 +114,10 @@ function deleteList($listName){
 // addTask // // addTask //
 // addTask // // addTask //
 
-function addTask($taskName, $taskDescription){
+function addTask($listId, $taskName, $taskDescription){
     $conn = databaseConnection();
-    $stmt=$conn->prepare('INSERT INTO task (`name`,`text`) values (:taskName,:taskDescription)');
+    $stmt=$conn->prepare('INSERT INTO task (`listId`,`name`,`text`) values (:listId,:taskName,:taskDescription)');
+    $stmt->bindParam(':listId', $listId);
     $stmt->bindParam(':taskName', $taskName);
     $stmt->bindParam(':taskDescription', $taskDescription);
     $stmt->execute();

@@ -23,6 +23,8 @@
                 <form class = "w3-container" role = "form" action = 'createList.php' method = "post">
                     <label> name: </label>  
                     <input type = "text" name = "listName" required></br>
+                    <label> description: </label>  
+                    <input type = "text" name = "description" required></br>
                     <button class = 'w3-btn w3-teal'type = "submit" name = "register">submit</button>
                 </form>
         </div>
@@ -33,7 +35,8 @@
 
             if ( $_POST == true){
                 $listName = $_POST['listName'];
-                createList($listName);
+                $listDescription = $_POST['description'];
+                createList($listName,$listDescription);
             }
         ?>
 
