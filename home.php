@@ -21,8 +21,10 @@
 
         <?php
 
+
         $alllist = getAllList();
-        $alltask = getAlltask();
+        
+        $alllistid = getallListId();
 
         foreach ($alllist as $value){
 
@@ -37,17 +39,22 @@
                     </div>
 
                     <?php
-                     foreach ($alltask as $value){
 
+                    $id = $value['id'];
+                    $alltask = getAlltask($id);
+
+                     foreach ($alltask as $taskloop){
+              
                     ?>
                         <div class = 'w3-card w3-round-xxlarge w3-sand left' style="width:100%; height:20%">
-                            <h3 class = "w3-center"><?php echo $value['name'] ?></h3>
+                            <h3 class = "w3-center"><?php echo $taskloop['name'] ?></h3>
                                 <div class = 'w3-container w3-center'>
-                                    <button class = 'w3-btn w3-sand'type = "submit" onclick ='location.href ="task.php"'name = "bewerken">edit</button>
-                                    <button class = 'w3-btn w3-sand'type = "submit" onclick ='location.href ="task.php"'name = "bewerken">delete task</button>
+                                    <button class = 'w3-btn w3-sand'type = "submit" onclick ='location.href ="task.php?id= <?php echo $taskloop["id"]; ?>"'name = "bewerken">edit</button>
+                                    <button class = 'w3-btn w3-sand'type = "submit" onclick ='location.href ="task.php?id= <?php echo $taskloop["id"]; ?>"'name = "bewerken">delete task</button>
                                 </div>
                         </div>
                     <?php
+                   
                     }
                     ?>
             </div>

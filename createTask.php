@@ -5,15 +5,22 @@
     </header>
 
     <body>
+
+    <?php
+
+    $listid = $_GET['id'];    
+
+    ?>
         <div id = 'pagina' class = 'w3-container'>
             <div class ='w3-container w3-round-large w3-teal'>
                 <h1>ToDoList</h1> 
             </div>
 
             <h2>add task</h2>
-            <h3> lijst: <?php echo $_GET['id']; ?> </h3> 
+            <h3> lijst: <?php echo $listid ?> </h3> 
 
             <form class = "w3-container" role = "form" action = 'createTask.php' method = "post">
+                <input name='listid' type='hidden' value="<?php echo $listid; ?>">
                 <label> naam: </label>  
                 <input type = "text" name = "taskName" required></br>
                 <label> task description: </label>
@@ -26,14 +33,13 @@
                 require 'function.php';
                 
                 if ( $_POST == true){
-                $listId = $_GET['id'];    
+                
+                $listid = $_POST['listid'];
                 $taskName = $_POST['taskName'];
                 $taskDescription = $_POST['taskDescription'];
-                addTask($listId,$taskName,$taskDescription);
+               
+                addTask($listid,$taskName,$taskDescription);
 
-
-
-                
                 header("Location: home.php");
                 }
             ?>

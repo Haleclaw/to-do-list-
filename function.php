@@ -56,12 +56,32 @@ function createList($listName,$listDescription){
     header("location: list.php?listId=".$list[0][0]);
 }
 
+// editList // // editList //
+// editList // // editList //
+
+function editlist($id){
+    $conn = databaseConnection();
+    $stmt=$conn->prepare('UPDATE list SET name = `listid`  WHERE id= :id');
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    $conn = null; 
+}
+
+
 // getListId // // getListId //
 // getListId // // getListId //
 
 function getListId(){
     $conn = databaseConnection();
     $stmt=$conn->prepare('SELECT (id) FROM list');
+    $stmt->execute();
+    return $stmt->fetchAll();
+    $conn = null;
+}
+
+function getallListId(){
+    $conn = databaseConnection();
+    $stmt=$conn->prepare('SELECT * FROM task WHERE listid');
     $stmt->execute();
     return $stmt->fetchAll();
     $conn = null;
@@ -92,10 +112,10 @@ function getAllList(){
 // getAlltask // // getAlltask //
 // getAlltask // // getAlltask //
 
-function getAlltask(){
+function getAlltask($id){
     $conn = databaseConnection();
-    $stmt=$conn->prepare('SELECT * FROM task');
-    $stmt->execute();
+    $stmt=$conn->prepare('SELECT * FROM task where listid = :id');
+    $stmt->execute([":id" => $id]);
     return $stmt->fetchALL();
     $conn = null;
 }
@@ -103,7 +123,7 @@ function getAlltask(){
 // deleteList // // deleteList //
 // deleteList // // deleteList //
 
-function deleteList($listId){
+function deleteList($id){
     $conn = databaseConnection();
     $stmt=$conn->prepare('DELETE FROM list WHERE id= :id');
     $stmt->bindParam(':id', $id);
@@ -114,10 +134,10 @@ function deleteList($listId){
 // addTask // // addTask //
 // addTask // // addTask //
 
-function addTask($listId, $taskName, $taskDescription){
+function addTask($listid, $taskName, $taskDescription){
     $conn = databaseConnection();
-    $stmt=$conn->prepare('INSERT INTO task (`listId`,`name`,`text`) values (:listId,:taskName,:taskDescription)');
-    $stmt->bindParam(':listId', $listId);
+    $stmt=$conn->prepare("INSERT INTO `task` (`listid`,`name`,`text`) values (:listid,:taskName,:taskDescription)");
+    $stmt->bindParam(':listid', $listid);
     $stmt->bindParam(':taskName', $taskName);
     $stmt->bindParam(':taskDescription', $taskDescription);
     $stmt->execute();

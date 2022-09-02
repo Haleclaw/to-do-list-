@@ -16,12 +16,15 @@
                 <div class = "w3-container">
 
                     <?php
-                        require 'function.php'; 
+                        require 'function.php';
+                        
+                        $id = $_GET['id'];
 
                         if ( $_POST == false){
                     ?>
 
-                    <form class = "w3-container" role = "form" action = 'createList.php' method = "post">
+                    <form class = "w3-container" role = "form" action = 'editList.php' method = "post">
+                        <input name='listid' type='hidden' value="<?php echo $id; ?>">
                         <label> name: </label>  
                         <input type = "text" name = "listName" required></br>
                         <label> description: </label>  
@@ -32,7 +35,17 @@
 
                     <?php
                         }
-                    ?>
+
+                        if ($_POST == true){
+
+                            
+
+                            $id = $_POST['id'];
+                            editList($id);
+                        }   
+                        ?>
+                       
+                    
         </div>
     </body>
 </html>
