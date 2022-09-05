@@ -59,10 +59,12 @@ function createList($listName,$listDescription){
 // editList // // editList //
 // editList // // editList //
 
-function editlist($id){
+function editList($id,$listName,$description){
     $conn = databaseConnection();
-    $stmt=$conn->prepare('UPDATE list SET name = `listid`  WHERE id= :id');
+    $stmt=$conn->prepare('UPDATE list SET id = :id, name = :listName, description = :description  WHERE id= :id');
     $stmt->bindParam(':id', $id);
+    $stmt->bindParam(':listName', $listName);
+    $stmt->bindParam(':description', $description);
     $stmt->execute();
     $conn = null; 
 }
@@ -134,14 +136,40 @@ function deleteList($id){
 // addTask // // addTask //
 // addTask // // addTask //
 
-function addTask($listid, $taskName, $taskDescription){
+function addTask($listid, $taskName, $taskDescription,$status){
     $conn = databaseConnection();
-    $stmt=$conn->prepare("INSERT INTO `task` (`listid`,`name`,`text`) values (:listid,:taskName,:taskDescription)");
+    $stmt=$conn->prepare("INSERT INTO `task` (`listid`,`name`,`text`,`status`) values (:listid,:taskName,:taskDescription,:status)");
     $stmt->bindParam(':listid', $listid);
     $stmt->bindParam(':taskName', $taskName);
     $stmt->bindParam(':taskDescription', $taskDescription);
+    $stmt->bindParam(':status', $status);
     $stmt->execute();
     $conn = null;
+}
+
+// deleteTask // // deleteTask // 
+// deleteTask // // deleteTask // 
+
+function deleteTask($id){
+    $conn = databaseConnection();
+    $stmt=$conn->prepare('DELETE FROM task WHERE id= :id');
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    $conn = null; 
+}
+
+// editTask // // editTask // 
+// editTask // // editTask // 
+
+function editTask($id,$taskName,$description,$status){
+    $conn = databaseConnection();
+    $stmt=$conn->prepare('UPDATE task SET id = :id, name = :taskName, text = :description, status = :status  WHERE id= :id');
+    $stmt->bindParam(':id', $id);
+    $stmt->bindParam(':taskName', $taskName);
+    $stmt->bindParam(':description', $description);
+    $stmt->bindParam(':status', $status);
+    $stmt->execute();
+    $conn = null; 
 }
 
 ?>

@@ -46,11 +46,13 @@
                      foreach ($alltask as $taskloop){
               
                     ?>
-                        <div class = 'w3-card w3-round-xxlarge w3-sand left' style="width:100%; height:20%">
+                        <div class = 'w3-card w3-round-xxlarge w3-sand' style="width:100%; height:20%">
                             <h3 class = "w3-center"><?php echo $taskloop['name'] ?></h3>
+                            <h4 class = "w3-center"> beschrijving: <?php echo $taskloop['text'] ?></h4>
+                            <h5 class = "w3-center"> status: <?php echo $taskloop['status'] ?> </h5>
                                 <div class = 'w3-container w3-center'>
-                                    <button class = 'w3-btn w3-sand'type = "submit" onclick ='location.href ="task.php?id= <?php echo $taskloop["id"]; ?>"'name = "bewerken">edit</button>
-                                    <button class = 'w3-btn w3-sand'type = "submit" onclick ='location.href ="task.php?id= <?php echo $taskloop["id"]; ?>"'name = "bewerken">delete task</button>
+                                    <button class = 'w3-btn w3-sand'type = "submit" onclick ='location.href ="editTask.php?id= <?php echo $taskloop["id"]; ?>"'name = "bewerken">edit</button>
+                                    <button class = 'w3-btn w3-sand'type = "submit" onclick ='location.href ="deleteTask.php?id= <?php echo $taskloop["id"]; ?>"'name = "delete">delete task</button>
                                 </div>
                         </div>
                     <?php

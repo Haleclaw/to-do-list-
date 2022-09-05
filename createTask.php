@@ -25,6 +25,12 @@
                 <input type = "text" name = "taskName" required></br>
                 <label> task description: </label>
                 <input type = "text" class='taskDescription' name = "taskDescription" required><br>
+                <h2> status: </h2>
+                <label> voldaan: </label>
+                <input name='status' type='checkbox' value="voldaan">
+                <label> in Behandeling: </label>
+                <input name='status' type='checkbox' value="Behandeling">
+                <br><br>
                 <button class = 'w3-btn w3-teal'type = "submit" name = "register">submit</button>
             </form>
 
@@ -37,8 +43,9 @@
                 $listid = $_POST['listid'];
                 $taskName = $_POST['taskName'];
                 $taskDescription = $_POST['taskDescription'];
+                $status = $_POST['status'];
                
-                addTask($listid,$taskName,$taskDescription);
+                addTask($listid,$taskName,$taskDescription,$status);
 
                 header("Location: home.php");
                 }

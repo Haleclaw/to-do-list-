@@ -11,7 +11,7 @@
                     <h1>ToDoList</h1> 
                 </div>
 
-                <h2>edit list</h2> 
+                <h2>edit task</h2> 
         
                 <div class = "w3-container">
 
@@ -23,15 +23,23 @@
                         if ( $_POST == false){
                     ?>
 
-                    <form class = "w3-container" role = "form" action = 'editList.php' method = "post">
+                    <form class = "w3-container" role = "form" action = 'editTask.php' method = "post">
                         <input name='id' type='hidden' value="<?php echo $id; ?>">
                         <label> name: </label>  
-                        <input type = "text" name = "listName" required></br>
+                        <input type = "text" name = "taskName" required></br>
                         <label> description: </label>  
                         <input type = "text" name = "description" required></br>
+                        <h2> status: </h2>
+                        <label> voldaan: </label>
+                        <input name='status' type='checkbox' value="voldaan">
+                        <label> in Behandeling: </label>
+                        <input name='status' type='checkbox' value="Behandeling">
+                        <br><br>
+                       
                         <button class = 'w3-btn w3-teal'type = "submit" name = "register">submit</button>
                     </form>
                 </div>
+
 
                     <?php
                         }
@@ -40,9 +48,10 @@
 
                         
                             $id = $_POST['id'];
-                            $listName = $_POST['listName'];
+                            $taskName = $_POST['taskName'];
                             $description = $_POST['description'];
-                            editList($id,$listName,$description);
+                            $status = $_POST['status']; 
+                            editTask($id,$taskName,$description,$status);
 
                             header("Location: home.php");
                         }   
