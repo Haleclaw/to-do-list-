@@ -114,12 +114,33 @@ function getAllList(){
 // getAlltask // // getAlltask //
 // getAlltask // // getAlltask //
 
-function getAlltask($id){
-    $conn = databaseConnection();
-    $stmt=$conn->prepare('SELECT * FROM task where listid = :id');
-    $stmt->execute([":id" => $id]);
-    return $stmt->fetchALL();
-    $conn = null;
+function getAlltask($id,$filter){
+    // no filter //
+    if ($filter == ''){
+        $conn = databaseConnection();
+        $stmt=$conn->prepare('SELECT * FROM task where listid = :id');
+        $stmt->execute([":id" => $id]);
+        return $stmt->fetchALL();
+        $conn = null;
+      }
+
+      // status filter
+      else if ($filter == 'status'){
+        $conn = databaseConnection();
+        $stmt=$conn->prepare('SELECT * FROM task  where listid = :id ORDER BY status');
+        $stmt->execute([":id" => $id]);
+        return $stmt->fetchALL();
+        $conn = null;
+      }
+
+     // time fiter
+      else if ($filter == 'time'){
+        $conn = databaseConnection();
+        $stmt=$conn->prepare('SELECT * FROM task  where listid = :id ORDER BY time' );
+        $stmt->execute([":id" => $id]);
+        return $stmt->fetchALL();
+        $conn = null;
+      }
 }
 
 // deleteList // // deleteList //
@@ -136,13 +157,14 @@ function deleteList($id){
 // addTask // // addTask //
 // addTask // // addTask //
 
-function addTask($listid, $taskName, $taskDescription,$status){
+function addTask($listid, $taskName, $taskDescription,$status,$time){
     $conn = databaseConnection();
-    $stmt=$conn->prepare("INSERT INTO `task` (`listid`,`name`,`text`,`status`) values (:listid,:taskName,:taskDescription,:status)");
+    $stmt=$conn->prepare("INSERT INTO `task` (`listid`,`name`,`text`,`status`,`time`) values (:listid,:taskName,:taskDescription,:status,:time)");
     $stmt->bindParam(':listid', $listid);
     $stmt->bindParam(':taskName', $taskName);
     $stmt->bindParam(':taskDescription', $taskDescription);
     $stmt->bindParam(':status', $status);
+    $stmt->bindParam(':time', $time);
     $stmt->execute();
     $conn = null;
 }

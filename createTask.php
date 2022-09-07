@@ -8,6 +8,7 @@
 
     <?php
 
+    $time = date('Y-m-d h:i:s');
     $listid = $_GET['id'];    
 
     ?>
@@ -44,8 +45,9 @@
                 $taskName = $_POST['taskName'];
                 $taskDescription = $_POST['taskDescription'];
                 $status = $_POST['status'];
+                
                
-                addTask($listid,$taskName,$taskDescription,$status);
+                addTask($listid,$taskName,$taskDescription,$status,$time);
 
                 header("Location: home.php");
                 }
