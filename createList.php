@@ -37,6 +37,8 @@
                 $listName = $_POST['listName'];
                 $listDescription = $_POST['description'];
                 createList($listName,$listDescription);
+
+                header("Location: home.php");
             }
         ?>
 

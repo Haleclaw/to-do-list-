@@ -49,11 +49,6 @@ function createList($listName,$listDescription){
     $stmt->execute();
     $conn = null;
 
-
-    $list = getListId();
-    var_dump($list[0][0]);
-
-    header("location: list.php?listId=".$list[0][0]);
 }
 
 // editList // // editList //
@@ -72,14 +67,6 @@ function editList($id,$listName,$description){
 
 // getListId // // getListId //
 // getListId // // getListId //
-
-function getListId(){
-    $conn = databaseConnection();
-    $stmt=$conn->prepare('SELECT (id) FROM list');
-    $stmt->execute();
-    return $stmt->fetchAll();
-    $conn = null;
-}
 
 function getallListId(){
     $conn = databaseConnection();
@@ -133,7 +120,7 @@ function getAlltask($id,$filter){
         $conn = null;
       }
 
-     // time fiter
+     // time filter
       else if ($filter == 'time'){
         $conn = databaseConnection();
         $stmt=$conn->prepare('SELECT * FROM task  where listid = :id ORDER BY time' );

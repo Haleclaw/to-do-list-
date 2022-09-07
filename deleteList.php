@@ -18,6 +18,8 @@
 
             $id = $_GET['id'];
             deleteList($id);
+
+            header("Location: home.php");
         ?>
     </body> 
 

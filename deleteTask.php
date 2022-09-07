@@ -19,6 +19,8 @@
 
             $id = $_GET['id'];
             deleteTask($id);
+
+            header("Location: home.php");
         ?>
     </body> 
 
