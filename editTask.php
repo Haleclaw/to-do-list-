@@ -33,8 +33,11 @@
                         <label> voldaan: </label>
                         <input name='status' type='checkbox' value="voldaan">
                         <label> in Behandeling: </label>
-                        <input name='status' type='checkbox' value="Behandeling">
+                        <input name='status' type='checkbox' value="Behandeling">                      
                         <br><br>
+                        <h2> duur: </h2>
+                        <label> hoelang doe je over de taak in uren?: </label>
+                        <input type = "text" class='duration' name = "duration" required><br>
                        
                         <button class = 'w3-btn w3-teal'type = "submit" name = "register">submit</button>
                     </form>
@@ -50,8 +53,9 @@
                             $id = $_POST['id'];
                             $taskName = $_POST['taskName'];
                             $description = $_POST['description'];
-                            $status = $_POST['status']; 
-                            editTask($id,$taskName,$description,$status);
+                            $status = $_POST['status'];
+                            $duration = $_POST['duration'];
+                            editTask($id,$taskName,$description,$status,$duration);
 
                             header("Location: home.php");
                         }   

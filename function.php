@@ -112,18 +112,27 @@ function getAlltask($id,$filter){
       }
 
       // status filter
-      else if ($filter == 'status'){
+      else if ($filter == 'statusVoldaan'){
         $conn = databaseConnection();
-        $stmt=$conn->prepare('SELECT * FROM task  where listid = :id ORDER BY status');
+        $stmt=$conn->prepare('SELECT * FROM task  where listid = :id AND status = "voldaan"');
         $stmt->execute([":id" => $id]);
         return $stmt->fetchALL();
         $conn = null;
       }
 
+       // status filter
+       else if ($filter == 'statusBehandeling'){
+         $conn = databaseConnection();
+         $stmt=$conn->prepare('SELECT * FROM task  where listid = :id AND status = "Behandeling"');
+         $stmt->execute([":id" => $id]);
+         return $stmt->fetchALL();
+         $conn = null;
+     }
+
      // time filter
       else if ($filter == 'time'){
         $conn = databaseConnection();
-        $stmt=$conn->prepare('SELECT * FROM task  where listid = :id ORDER BY time' );
+        $stmt=$conn->prepare('SELECT * FROM task  where listid = :id ORDER BY duration' );
         $stmt->execute([":id" => $id]);
         return $stmt->fetchALL();
         $conn = null;
@@ -144,14 +153,15 @@ function deleteList($id){
 // addTask // // addTask //
 // addTask // // addTask //
 
-function addTask($listid, $taskName, $taskDescription,$status,$time){
+function addTask($listid, $taskName, $taskDescription,$status,$time,$duration){
     $conn = databaseConnection();
-    $stmt=$conn->prepare("INSERT INTO `task` (`listid`,`name`,`text`,`status`,`time`) values (:listid,:taskName,:taskDescription,:status,:time)");
+    $stmt=$conn->prepare("INSERT INTO `task` (`listid`,`name`,`text`,`status`,`time`,`duration`) values (:listid,:taskName,:taskDescription,:status,:time,:duration)");
     $stmt->bindParam(':listid', $listid);
     $stmt->bindParam(':taskName', $taskName);
     $stmt->bindParam(':taskDescription', $taskDescription);
     $stmt->bindParam(':status', $status);
     $stmt->bindParam(':time', $time);
+    $stmt->bindParam(':duration', $duration);
     $stmt->execute();
     $conn = null;
 }
@@ -170,13 +180,14 @@ function deleteTask($id){
 // editTask // // editTask // 
 // editTask // // editTask // 
 
-function editTask($id,$taskName,$description,$status){
+function editTask($id,$taskName,$description,$status,$duration){
     $conn = databaseConnection();
-    $stmt=$conn->prepare('UPDATE task SET id = :id, name = :taskName, text = :description, status = :status  WHERE id= :id');
+    $stmt=$conn->prepare('UPDATE task SET id = :id, name = :taskName, text = :description, status = :status, duration = :duration  WHERE id= :id');
     $stmt->bindParam(':id', $id);
     $stmt->bindParam(':taskName', $taskName);
     $stmt->bindParam(':description', $description);
     $stmt->bindParam(':status', $status);
+    $stmt->bindParam(':duration', $duration);
     $stmt->execute();
     $conn = null; 
 }
