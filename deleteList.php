@@ -4,6 +4,12 @@
         <link rel="stylesheet" type="text/css" href="style/style.css">
     </header>
 
+    <?php
+
+        require 'list.php';
+
+    ?>
+
     <body>
         <div id = 'pagina' class = 'w3-container'>
             <div class ='w3-container w3-round-large w3-teal'>
@@ -14,7 +20,6 @@
         </div>
 
         <?php
-            require 'function.php';
 
             $id = $_GET['id'];
             deleteList($id);

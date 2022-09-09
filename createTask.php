@@ -8,7 +8,7 @@
 
     <?php
 
-    $time = date('Y-m-d h:i:s');
+    require 'task.php';
     $listid = $_GET['id'];    
 
     ?>
@@ -34,29 +34,11 @@
                 <br><br>
                 <h2> duur: </h2>
                 <label> hoelang doe je over de taak in uren?: </label>
+                <input name='createTask' type='hidden' value="createTask">
                 <input type = "text" class='duration' name = "duration" required><br>
                 
                 <button class = 'w3-btn w3-teal'type = "submit" name = "register">submit</button>
             </form>
-
-            <?php
-
-                require 'function.php';
-                
-                if ( $_POST == true){
-                
-                $listid = $_POST['listid'];
-                $taskName = $_POST['taskName'];
-                $taskDescription = $_POST['taskDescription'];
-                $status = $_POST['status'];
-                $duration = $_POST['duration'];
-                
-               
-                addTask($listid,$taskName,$taskDescription,$status,$time,$duration);
-
-                header("Location: home.php");
-                }
-            ?>
         </div>
     </body>
 

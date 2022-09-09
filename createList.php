@@ -4,6 +4,10 @@
         <link rel="stylesheet" type="text/css" href="style/style.css">
     </header>
 
+    <?php    
+        require 'list.php'
+    ?>
+
     <body>
         <div id = 'pagina' class = 'w3-container'>
             <div class ='w3-container w3-round-large w3-teal'>
@@ -14,33 +18,15 @@
       
             <div class = "w3-container">
 
-                <?php
-                    require 'function.php'; 
-
-                    if ( $_POST == false){
-                ?>
-
-                <form class = "w3-container" role = "form" action = 'createList.php' method = "post">
+                <form class = "w3-container" role = "form" action ='list.php' method = "post">
                     <label> name: </label>  
                     <input type = "text" name = "listName" required></br>
                     <label> description: </label>  
                     <input type = "text" name = "description" required></br>
+                    <input type = "hidden" name = "createList" value="createList" required></br>
                     <button class = 'w3-btn w3-teal'type = "submit" name = "register">submit</button>
                 </form>
         </div>
-
-        <?php
-        
-            }
-
-            if ( $_POST == true){
-                $listName = $_POST['listName'];
-                $listDescription = $_POST['description'];
-                createList($listName,$listDescription);
-
-                header("Location: home.php");
-            }
-        ?>
 
     </body> 
 

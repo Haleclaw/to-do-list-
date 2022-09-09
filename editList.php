@@ -11,44 +11,28 @@
                     <h1>ToDoList</h1> 
                 </div>
 
+                    <?php
+                        require 'list.php';
+                        
+                        $id = $_GET['id'];
+                    ?>
+
                 <h2>edit list</h2> 
         
                 <div class = "w3-container">
 
-                    <?php
-                        require 'function.php';
-                        
-                        $id = $_GET['id'];
 
-                        if ( $_POST == false){
-                    ?>
 
-                    <form class = "w3-container" role = "form" action = 'editList.php' method = "post">
+                    <form class = "w3-container" role = "form" action = 'list.php' method = "post">
                         <input name='id' type='hidden' value="<?php echo $id; ?>">
                         <label> name: </label>  
                         <input type = "text" name = "listName" required></br>
                         <label> description: </label>  
                         <input type = "text" name = "description" required></br>
+                        <input name='editList' type='hidden' value="editList">
                         <button class = 'w3-btn w3-teal'type = "submit" name = "register">submit</button>
                     </form>
-                </div>
-
-                    <?php
-                        }
-
-                        if ($_POST == true){
-
-                        
-                            $id = $_POST['id'];
-                            $listName = $_POST['listName'];
-                            $description = $_POST['description'];
-                            editList($id,$listName,$description);
-
-                            header("Location: home.php");
-                        }   
-                        ?>
-                       
-                    
+                </div>                 
         </div>
     </body>
 </html>

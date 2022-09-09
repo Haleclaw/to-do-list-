@@ -16,14 +16,12 @@
                 <div class = "w3-container">
 
                     <?php
-                        require 'function.php';
+                        require 'task.php';
                         
                         $id = $_GET['id'];
-
-                        if ( $_POST == false){
                     ?>
 
-                    <form class = "w3-container" role = "form" action = 'editTask.php' method = "post">
+                    <form class = "w3-container" role = "form" action = 'task.php' method = "post">
                         <input name='id' type='hidden' value="<?php echo $id; ?>">
                         <label> name: </label>  
                         <input type = "text" name = "taskName" required></br>
@@ -37,6 +35,7 @@
                         <br><br>
                         <h2> duur: </h2>
                         <label> hoelang doe je over de taak in uren?: </label>
+                        <input name='editTask' type='hidden' value="editTask">
                         <input type = "text" class='duration' name = "duration" required><br>
                        
                         <button class = 'w3-btn w3-teal'type = "submit" name = "register">submit</button>
@@ -45,20 +44,13 @@
 
 
                     <?php
-                        }
+                        
 
-                        if ($_POST == true){
+                
 
                         
-                            $id = $_POST['id'];
-                            $taskName = $_POST['taskName'];
-                            $description = $_POST['description'];
-                            $status = $_POST['status'];
-                            $duration = $_POST['duration'];
-                            editTask($id,$taskName,$description,$status,$duration);
 
-                            header("Location: home.php");
-                        }   
+                          
                         ?>
                        
                     
