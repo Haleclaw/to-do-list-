@@ -1,27 +1,10 @@
-<html>
-    <header>
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <link rel="stylesheet" type="text/css" href="style/style.css">
-    </header>
+<?php
 
-    <body>
-        <div id = 'pagina' class = 'w3-container'>
-            <div class ='w3-container w3-round-large w3-teal'>
-                <h1>ToDoList</h1>
-                <p> id: <?php echo $_GET['id'] ?> </p>
-            </div>
+    require 'function.php';
 
-            <button class = 'w3-btn w3-black'type = "submit" onclick = 'location.href ="home.php"' name = "Main page">Main page</button> 
-        </div>
+    $id = $_GET['id'];
+    deleteTask($id);
 
-        <?php
-            require 'function.php';
+    header("Location: home.php");
+?>
 
-            $id = $_GET['id'];
-            deleteTask($id);
-
-            header("Location: home.php");
-        ?>
-    </body> 
-
-</html>

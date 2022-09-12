@@ -22,13 +22,6 @@
 
     }
 
-    // delete list //
-    if(isset($_POST['test'])){
-        $id = $_GET['id'];
-        deleteList($id);
-
-        header("Location: home.php");
-    }
 
             
         
