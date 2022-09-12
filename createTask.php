@@ -4,14 +4,12 @@
         <link rel="stylesheet" type="text/css" href="style/style.css">
     </header>
 
-    <body>
-
     <?php
-
-    require 'task.php';
-    $listid = $_GET['id'];    
-
-    ?>
+        require 'task.php';
+        $listid = $_GET['id'];    
+    ?> 
+    
+    <body>
         <div id = 'pagina' class = 'w3-container'>
             <div class ='w3-container w3-round-large w3-teal'>
                 <h1>ToDoList</h1> 

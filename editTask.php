@@ -5,6 +5,11 @@
         <link rel="stylesheet" type="text/css" href="style/style.css">
     </header>
 
+    <?php
+        require 'task.php'; 
+        $id = $_GET['id'];
+     ?>
+
     <body>
         <div id = 'pagina' class = 'w3-container'>
                 <div class ='w3-container w3-round-large w3-teal'>
@@ -12,14 +17,8 @@
                 </div>
 
                 <h2>edit task</h2> 
-        
-                <div class = "w3-container">
 
-                    <?php
-                        require 'task.php';
-                        
-                        $id = $_GET['id'];
-                    ?>
+                <div class = "w3-container">
 
                     <form class = "w3-container" role = "form" action = 'task.php' method = "post">
                         <input name='id' type='hidden' value="<?php echo $id; ?>">
@@ -41,19 +40,7 @@
                         <button class = 'w3-btn w3-teal'type = "submit" name = "register">submit</button>
                     </form>
                 </div>
-
-
-                    <?php
-                        
-
-                
-
-                        
-
-                          
-                        ?>
-                       
-                    
+                  
         </div>
     </body>
 </html>

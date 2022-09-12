@@ -5,24 +5,20 @@
         <link rel="stylesheet" type="text/css" href="style/style.css">
     </header>
 
+    <?php
+        require 'list.php';
+        $id = $_GET['id'];
+    ?>
+
     <body>
         <div id = 'pagina' class = 'w3-container'>
                 <div class ='w3-container w3-round-large w3-teal'>
                     <h1>ToDoList</h1> 
                 </div>
 
-                    <?php
-                        require 'list.php';
-                        
-                        $id = $_GET['id'];
-                    ?>
-
                 <h2>edit list</h2> 
         
                 <div class = "w3-container">
-
-
-
                     <form class = "w3-container" role = "form" action = 'list.php' method = "post">
                         <input name='id' type='hidden' value="<?php echo $id; ?>">
                         <label> name: </label>  
